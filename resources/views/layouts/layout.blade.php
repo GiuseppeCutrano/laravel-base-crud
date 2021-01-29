@@ -8,6 +8,9 @@
     <title>Booking</title>
 </head>
 <body>
-    @yield('content', 'Loading..')
+    @section('main')
+     <h1>Hotel</h1>
+    @show
+    
 </body>
 </html>
