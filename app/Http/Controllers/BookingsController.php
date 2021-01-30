@@ -25,7 +25,7 @@ class BookingsController extends Controller
      */
     public function create()
     {
-        //
+        return view('create');
     }
 
     /**
@@ -36,7 +36,16 @@ class BookingsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $newBooking = new Booking();
+        $newBooking->guest_full_name = $request->input('guest_full_name');
+        $newBooking->guest_credit_card = $request->input('guest_credit_card');
+        $newBooking->room = $request->input('room');
+        $newBooking->from_date = $request->input('from_date');
+        $newBooking->to_date = $request->input('to_date');
+        $newBooking->more_details = $request->input('more_details');
+
+        $newBooking->save();
+        return view('success.store');
     }
 
     /**
@@ -47,7 +56,8 @@ class BookingsController extends Controller
      */
     public function show($id)
     {
-        //
+        $booking = Booking::find($id);
+        return view('show', compact('booking'));
     }
 
     /**
