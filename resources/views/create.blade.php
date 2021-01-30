@@ -1,5 +1,7 @@
 @extends('layouts.layout')
-
+<div >
+    <a href="/">Homepage</a>
+</div>
 @section('content')
     <div class="row">
         <div class="col-lg-12 d-flex align-items-center justify-content-center ">

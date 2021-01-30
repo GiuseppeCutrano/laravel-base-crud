@@ -45,7 +45,7 @@ class BookingsController extends Controller
         $newBooking->more_details = $request->input('more_details');
 
         $newBooking->save();
-        return view('success.store');
+        return view('store');
     }
 
     /**
