@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\BookingsFormRequest;
+
 use App\Booking;
 
 class BookingsController extends Controller
@@ -34,18 +36,23 @@ class BookingsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BookingsFormRequest $request)
+
     {
+        $validated = $request->validated();
+
         $newBooking = new Booking();
-        $newBooking->guest_full_name = $request->input('guest_full_name');
-        $newBooking->guest_credit_card = $request->input('guest_credit_card');
-        $newBooking->room = $request->input('room');
+        $newBooking->guest_full_name = $validated["guest_full_name"];
+        $newBooking->guest_credit_card = $validated["guest_credit_card"];
+        $newBooking->room = $validated["room"];
         $newBooking->from_date = $request->input('from_date');
         $newBooking->to_date = $request->input('to_date');
         $newBooking->more_details = $request->input('more_details');
 
         $newBooking->save();
         return view('store');
+
+       
     }
 
     /**
@@ -68,7 +75,8 @@ class BookingsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $booking = Booking::find($id);
+        return view('edit', compact('booking'));
     }
 
     /**

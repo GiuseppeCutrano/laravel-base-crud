@@ -15,7 +15,7 @@
     
     
         <main>
-            @section('main')
+            @yield('content')
             
             @show
         </main>

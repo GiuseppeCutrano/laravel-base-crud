@@ -2,7 +2,7 @@
 
 
 
-@section('main')
+@section('content')
 
 
 <div class="card d-flex  mt-5 justify-content-around"  style="width: 18rem;">
