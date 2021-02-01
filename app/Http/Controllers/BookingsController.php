@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\BookingsFormRequest;
 
+
 use App\Booking;
 
 class BookingsController extends Controller
@@ -86,9 +87,21 @@ class BookingsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(BookingsFormRequest $request, $id)
     {
-        //
+        $validated = $request->validated();
+
+        $oldBooking = Booking::find($id);
+        $oldBooking->guest_full_name = $validated["guest_full_name"];
+        $oldBooking->guest_credit_card = $validated["guest_credit_card"];
+        $oldBooking->room = $validated["room"];
+        $oldBooking->from_date = $request->input('from_date');
+        $oldBooking->to_date = $request->input('to_date');
+        $oldBooking->more_details = $request->input('more_details');
+
+        $oldBooking->save();
+
+        return redirect()->route("bookings.index");
     }
 
     /**
